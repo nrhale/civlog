@@ -20,7 +20,7 @@ def log_gas():
     }
 
     base_path = os.path.dirname(__file__)
-    file_path = os.path.join(base_path, "..", "data.json")
+    file_path = os.path.join(base_path, "..", "civData.json")
     with open(file_path, "r") as file:
         data = json.load(file)
     data["gas"].append(gas_log)
