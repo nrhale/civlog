@@ -31,3 +31,14 @@ def input_mileage():
     if input_yn("mileage") == "y":
         return input_number("mileage: ")
     return "n"
+
+
+def input_selection(count):
+    while True:
+        user_input = input("SELECTION: ")
+        if user_input.isdigit():
+            selection = int(user_input)
+            if 0 < selection < count + 1:
+                print()
+                return selection
+        print("INVALID SELECTION.")
