@@ -1,5 +1,6 @@
 import json
 import os
+from dotenv import load_dotenv
 from .utils.input_date import input_date
 from .utils.input_number import input_number
 
@@ -12,18 +13,18 @@ def log_gas():
     dollarsPerLitre = input_number("DOLLARS PER LITRE: ")
     total = input_number("TOTAL: ")
 
-    gas_log = {
-        "date": date,
-        "litres": litres,
-        "dollarsPerLitre": dollarsPerLitre,
-        "total": total,
-    }
-
-    base_path = os.path.dirname(__file__)
-    file_path = os.path.join(base_path, "..", "civData.json")
+    load_dotenv()
+    file_path = os.getenv("CIVLOG_DATA_PATH")
     with open(file_path, "r") as file:
         data = json.load(file)
-    data["gas"].append(gas_log)
+    data["gas"].append(
+        {
+            "date": date,
+            "litres": litres,
+            "dollarsPerLitre": dollarsPerLitre,
+            "total": total,
+        }
+    )
     with open(file_path, "w") as file:
         json.dump(data, file, indent=2)
 
