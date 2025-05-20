@@ -1,13 +1,15 @@
 import json
 import os
+
 from dotenv import load_dotenv
-from .utils.input_date import input_date
-from .utils.input_number import input_number
-from .utils.input_mileage import input_mileage
+
+from .utils.inputs import input_date
+from .utils.inputs import input_number
+from .utils.inputs import input_mileage
 
 
 def log_gas():
-    print("LOG GAS")
+    print("# LOG GAS")
 
     date = input_date()
     litres = input_number("LITRES: ")
@@ -32,4 +34,4 @@ def log_gas():
     with open(file_path, "w") as file:
         json.dump(data, file, indent=2)
 
-    print("GAS LOGGED")
+    print("GAS LOGGED\n")
