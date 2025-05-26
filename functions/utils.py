@@ -1,4 +1,7 @@
 from datetime import datetime
+import json
+import os
+from dotenv import load_dotenv
 
 
 def input_number(prompt):
@@ -42,3 +45,14 @@ def input_selection(count):
                 print()
                 return selection
         print("INVALID SELECTION.")
+
+
+def get_data():
+    load_dotenv()
+    with open(os.getenv("CIVLOG_DATA_PATH"), "r") as file:
+        return json.load(file)
+
+
+def update_data(data):
+    with open(os.getenv("CIVLOG_DATA_PATH"), "w") as file:
+        json.dump(data, file, indent=2)

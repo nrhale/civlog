@@ -1,9 +1,10 @@
-import json
-import os
-
-from dotenv import load_dotenv
-
-from functions.utils import input_date, input_mileage, input_number
+from functions.utils import (
+    get_data,
+    input_date,
+    input_mileage,
+    input_number,
+    update_data,
+)
 
 
 def log_gas():
@@ -24,12 +25,8 @@ def log_gas():
     if mileage != "n":
         log["mileage"] = mileage
 
-    load_dotenv()
-    file_path = os.getenv("CIVLOG_DATA_PATH")
-    with open(file_path, "r") as file:
-        data = json.load(file)
+    data = get_data()
     data["gas"].append(log)
-    with open(file_path, "w") as file:
-        json.dump(data, file, indent=2)
+    update_data(data)
 
     print("GAS LOGGED\n")
