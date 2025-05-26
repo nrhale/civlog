@@ -3,9 +3,7 @@ import os
 
 from dotenv import load_dotenv
 
-from .utils import input_date
-from .utils import input_number
-from .utils import input_mileage
+from functions.utils import input_date, input_mileage, input_number
 
 
 def log_gas():
